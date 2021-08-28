@@ -15,9 +15,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->integer('photo_id')->unsigned();
+            $table->unsignedBigInteger('photo_id')->nullable(false);
             $table->string('name');
-            $table->integer('position_id')->unsigned();
+            $table->unsignedBigInteger('position_id')->nullable(false);
             $table->date('date_employment');
             $table->integer('phone_number');
             $table->string('email')->unique();
@@ -26,8 +26,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('photo_id')->references('id')->on('photos');
-            $table->foreign('position_id')->references('id')->on('positions');
+        });
+
+        Schema::table('users', function($table) {
+            $table->foreign('photo_id')->references('id')->on('photos')->onDelete('cascade');
+            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
         });
     }
 

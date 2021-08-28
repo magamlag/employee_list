@@ -14,15 +14,16 @@ class CreatePhotosTable extends Migration
     public function up()
     {
         Schema::create('photos', function (Blueprint $table) {
-            $table->increments('id'); //you save this id in other tables
+            $table->id('id'); //you save this id in other tables
             $table->string('title');
             $table->string('src');
             $table->string('mime_type')->nullable();
-            $table->string('title')->nullable();
             $table->string('alt')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE photos ENGINE = InnoDB");
     }
 
     /**
