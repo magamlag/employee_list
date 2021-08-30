@@ -5,8 +5,11 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Faker\Generator;
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Str;
 
-class UserSeederBackup extends Seeder
+
+class UserBackupSeeder extends Seeder
 {
     /**
      * The current Faker instance.
@@ -44,10 +47,16 @@ class UserSeederBackup extends Seeder
     public function run()
     {
         //
-        DB::table("students")->insert([
+        DB::table("user_backups")->insert([
             "name" => $this->faker->name(),
-            "email" => $this->faker->safeEmail,
+            "position_id" => $this->faker->randomDigit(20),
+            "date_employment" => $this->faker->date(),
             "phone_number" => $this->faker->phoneNumber,
+            "email" => $this->faker->safeEmail,
+            "salary" => $this->faker->randomFloat(),
+            "email_verified_at" => $this->faker->date,
+            "password" => $this->faker->password,
+            "remember_token" =>  Str::random(100),
 
         ]);
 

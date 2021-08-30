@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\UserBackup;
+use App\Models\Position;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -23,11 +24,17 @@ class UserBackupFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            "name" => $this->faker->name(),
+            "position_id" => function() {
+                return UserBackup::factory(Position::class)->create()->id;
+            },
+            "date_employment" => $this->faker->date(),
+            "phone_number" => $this->faker->phoneNumber(),
+            "email" => $this->faker->safeEmail(),
+            "salary" => $this->faker->randomFloat(),
+            "email_verified_at" => $this->faker->date(),
+            "password" => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
+            "remember_token" =>  Str::random(100),
         ];
     }
 

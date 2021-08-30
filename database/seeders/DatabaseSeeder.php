@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\UserBackup::factory(10)->create();
-        $this->call('UserSeederBackup');
+        $this->call('PositionSeeder');
+        $this->call('UserBackupSeeder');
+
 
         $this->command->info('UserBackup table seeded!');
     }
