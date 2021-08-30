@@ -21,4 +21,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('employees', \App\Http\Controllers\EmployeeController::class);
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+Route::resource('admin/employees', \App\Http\Controllers\EmployeeController::class);
