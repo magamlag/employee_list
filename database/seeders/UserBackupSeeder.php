@@ -48,6 +48,7 @@ class UserBackupSeeder extends Seeder
     {
         //
         DB::table("user_backups")->insert([
+            "photo" => "no_name.jpg",
             "name" => $this->faker->name(),
             "position_id" => $this->faker->randomDigit(20),
             "date_employment" => $this->faker->date(),
