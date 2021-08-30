@@ -51,12 +51,12 @@ class UserBackupSeeder extends Seeder
             "name" => $this->faker->name(),
             "position_id" => $this->faker->randomDigit(20),
             "date_employment" => $this->faker->date(),
-            "phone_number" => $this->faker->phoneNumber,
+            "phone_number" => $this->faker->phoneNumber(),
             "email" => $this->faker->safeEmail,
             "salary" => $this->faker->randomFloat(),
             "email_verified_at" => $this->faker->date,
             "password" => $this->faker->password,
-            "remember_token" =>  Str::random(100),
+            "remember_token" =>  $this->faker->sha1,
 
         ]);
 

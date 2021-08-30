@@ -15,11 +15,11 @@ class CreateUserBackupsTable extends Migration
     {
         Schema::create('user_backups', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('photo_id')->nullable(false);
+            $table->string('photo');
             $table->string('name');
             $table->unsignedBigInteger('position_id')->nullable(false);
             $table->date('date_employment');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('email')->unique();
             $table->float('salary');
             $table->timestamp('email_verified_at')->nullable();
@@ -29,7 +29,6 @@ class CreateUserBackupsTable extends Migration
         });
 
         Schema::table('user_backups', function($table) {
-            $table->foreign('photo_id')->references('id')->on('photos')->onDelete('cascade');
             $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
         });
     }
