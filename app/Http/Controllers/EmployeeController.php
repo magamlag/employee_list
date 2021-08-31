@@ -11,23 +11,24 @@ class EmployeeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
         //
         $employees = UserBackup::get();
-        view('admin.employee_list', compact($employees));
+        return view('admin.employee_list', compact($employees));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
         //
+        return view('admin.employees.form');
     }
 
     /**
@@ -45,22 +46,24 @@ class EmployeeController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\UserBackup  $userBackup
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show(UserBackup $userBackup)
     {
         //
+        return view('admin.employees.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\UserBackup  $userBackup
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit(UserBackup $userBackup)
     {
         //
+        return view('admin.employees.form', compact('userBackup'));
     }
 
     /**
