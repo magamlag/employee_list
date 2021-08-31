@@ -17,7 +17,9 @@ class EmployeeController extends Controller
     {
         //
         $employees = UserBackup::get();
-        return view('admin.employee_list', compact($employees));
+//        dd($employees);
+        return view('admin.employees.index')->with('employees', $employees);
+
     }
 
     /**

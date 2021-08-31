@@ -1,3 +1,6 @@
+@extends('admin.index')
+@section('title', 'Employee List')
+@section('content')
 <table class="table">
     <thead class="thead-light">
     <tr>
@@ -20,9 +23,10 @@
             <td>{{$employee->date_employment}}</td>
             <td>{{$employee->phone_number}}</td>
             <td>{{$employee->email}}</td>
-            <td>{{$employee->salary}}</td>
+            <td>${{$employee->salary}}</td>
             <td>Action</td>
         </tr>
     @endforeach
     </tbody>
 </table>
+@endsection
