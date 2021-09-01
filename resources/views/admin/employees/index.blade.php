@@ -17,9 +17,9 @@
     <tbody>
     @foreach($employees as $employee)
         <tr>
-            <th scope="row"><img src="storage/images/{{ $employee->photo }}"></th>
+            <th scope="row"><img src="/image/{{ $employee->photo }}" width="50" height="50"></th>
             <td>{{$employee->name}}</td>
-            <td>position</td>
+            <td>{{$employee->position->name}}</td>
             <td>{{$employee->date_employment}}</td>
             <td>{{$employee->phone_number}}</td>
             <td>{{$employee->email}}</td>

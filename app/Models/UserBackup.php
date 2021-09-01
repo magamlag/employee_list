@@ -48,4 +48,12 @@ class UserBackup extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the position associated with the user.
+     */
+    public function position()
+    {
+        return $this->belongsTo(Position::class,'position_id','id');
+    }
 }

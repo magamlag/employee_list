@@ -16,8 +16,9 @@ class EmployeeController extends Controller
     public function index()
     {
         //
-        $employees = UserBackup::get();
-//        dd($employees);
+        $employees = UserBackup::all();
+//        $position = UserBackup::find(1)->position;
+//        dd($employees, $position);
         return view('admin.employees.index')->with('employees', $employees);
 
     }
