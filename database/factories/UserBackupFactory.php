@@ -31,10 +31,12 @@ class UserBackupFactory extends Factory
             "date_employment" => $this->faker->date(),
             "phone_number" => $this->faker->phoneNumber(),
             "email" => $this->faker->safeEmail(),
-            "salary" => $this->faker->randomFloat(),
-            "email_verified_at" => $this->faker->date(),
+            "salary" => $this->faker->randomFloat(3,300, 800),
+            "email_verified_at" => $this->faker->dateTime(),
             "password" => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
-            "remember_token" =>  Str::random(100),
+            "remember_token" =>  Str::random(100), //$faker->sha1
+            "created_at" => $this->faker->dateTime(),
+            "updated_at" => $this->faker->dateTime()
         ];
     }
 
