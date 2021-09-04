@@ -1,6 +1,7 @@
 @extends('admin.index')
 @section('title', 'Employee List')
 @section('content')
+    <div class="text-right"><a class="btn btn-secondary" href="{{route('employees.create')}}" role="button">Add Employee</a></div>
 <table class="table">
     <thead class="thead-light">
     <tr>
@@ -24,7 +25,22 @@
             <td>{{$employee->phone_number}}</td>
             <td>{{$employee->email}}</td>
             <td>${{$employee->salary}}</td>
-            <td>Action</td>
+            <td>
+                <form action="{{ route('employees.destroy', $employee
+->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                <a href="{{route('employees.edit',[$employee->id])}}">
+                    <i class="fas fa-edit"></i>
+                </a>
+                    <a href="{{route('employees.destroy',[$employee->id])}}">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                    <i class="fas fa-trash fa-lg text-danger"></i>
+                </button>
+                </form>
+            </td>
         </tr>
     @endforeach
     </tbody>

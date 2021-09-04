@@ -7,6 +7,8 @@
     <title>AdminLTE 3 | Blank Page</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <!-- jQuery -->
+    <script src="{{asset('js/app.js')}}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -23,12 +25,7 @@
         <div class="sidebar">
             <!-- Sidebar user (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
-                </div>
+
             </div>
 
             <!-- SidebarSearch Form -->
@@ -137,7 +134,12 @@
                     </div>
                 </div>
                 <div class="card-body">
-                   admin
+                    @if($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     @yield('content')
                 </div>
                 <!-- /.card-body -->
@@ -168,7 +170,6 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="{{asset('js/app.js')}}"></script>
+
 </body>
 </html>

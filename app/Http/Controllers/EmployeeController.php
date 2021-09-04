@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Position;
 use App\Models\User;
 use App\Models\UserBackup;
 use Illuminate\Http\Request;
@@ -38,11 +39,27 @@ class EmployeeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         //
+        $r = $request->all();
+        if($request->has('photo')) {
+            $r['photo'] = $request->file('photo')->getClientOriginalName();
+        } else {
+            $r['photo'] = "no_name.jpg";
+        }
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        UserBackup::create($request->all());
+
+        return redirect()->route('employees.index')
+            ->with('success','Employee created successfully.');
     }
 
     /**
@@ -53,7 +70,8 @@ class EmployeeController extends Controller
      */
     public function show(UserBackup $userBackup)
     {
-        //
+//        dd($userBackup);
+
         return view('admin.employees.show');
     }
 
@@ -63,10 +81,11 @@ class EmployeeController extends Controller
      * @param  \App\Models\UserBackup  $userBackup
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(UserBackup $userBackup)
+    public function edit(Request $request, $id, UserBackup $userBackup, Position $position)
     {
-        //
-        return view('admin.employees.form', compact('userBackup'));
+        $user = $userBackup->find($id);
+        $positions = $position->all();
+       return view('admin.employees.form', compact('user', 'positions'));
     }
 
     /**
@@ -74,21 +93,37 @@ class EmployeeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\UserBackup  $userBackup
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, UserBackup $userBackup)
+    public function update(Request $request, $id, UserBackup $userBackup)
     {
-        //
+        $r = $request->all();
+
+//        $userBackup->path = $request->file('image')->store('public/images');
+/*        $validatedData = $request->validate([
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);*/
+//        dd($r);
+        $userBackup = UserBackup::find($id);
+        $userBackup->update($r);
+
+        return redirect()->route('employees.index')->with('success', 'Data has been updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\UserBackup  $userBackup
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(UserBackup $userBackup)
+    public function destroy(UserBackup $userBackup, $id)
     {
         //
+//        dd($userBackup);
+
+        $userBackup = $userBackup->find($id);
+        $userBackup->delete();
+        return redirect()->route('employees.index')
+            ->with('success','Employee deleted successfully');
     }
 }

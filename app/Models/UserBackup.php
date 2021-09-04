@@ -26,8 +26,14 @@ class UserBackup extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'photo',
+        'position_id',
+        'date_employment',
+        'phone_number',
         'email',
-        'password',
+        'salary',
+        'email_verified_at'
+       // 'password',
     ];
 
     /**
