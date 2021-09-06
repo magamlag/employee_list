@@ -25,8 +25,9 @@ class UserBackupFactory extends Factory
     {
         return [
             "name" => $this->faker->name(),
+            "photo" => "no_name.jpg",
             "position_id" => function() {
-                return UserBackup::factory(Position::class)->create()->id;
+                return Position::factory()->create()->id;
             },
             "date_employment" => $this->faker->date(),
             "phone_number" => $this->faker->phoneNumber(),

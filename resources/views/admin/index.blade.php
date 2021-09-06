@@ -7,8 +7,18 @@
     <title>AdminLTE 3 | Blank Page</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+
+
     <!-- jQuery -->
     <script src="{{asset('js/app.js')}}"></script>
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#datetimepicker').datetimepicker();
+        });
+    </script>--}}
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -142,9 +152,10 @@
                     @endif
                     @yield('content')
                 </div>
+
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    Footer
+
                 </div>
                 <!-- /.card-footer-->
             </div>

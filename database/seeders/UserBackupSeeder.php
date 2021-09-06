@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Position;
+use App\Models\UserBackup;
 use Illuminate\Database\Seeder;
 use Faker\Generator;
 use Illuminate\Container\Container;
@@ -47,7 +49,7 @@ class UserBackupSeeder extends Seeder
     public function run()
     {
         //
-        DB::table("user_backups")->insert([
+        /*DB::table("user_backups")->insert([
             "photo" => "no_name.jpg",
             "name" => $this->faker->name(),
             "position_id" => $this->faker->randomDigit(20),
@@ -60,7 +62,8 @@ class UserBackupSeeder extends Seeder
             "remember_token" =>  $this->faker->sha1,
             "created_at" => $this->faker->dateTime(),
             "updated_at" => $this->faker->dateTime()
-        ]);
+        ]);*/
+        UserBackup::factory()->times(10)->create();
 
     }
 }

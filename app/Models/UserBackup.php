@@ -32,8 +32,8 @@ class UserBackup extends Authenticatable
         'phone_number',
         'email',
         'salary',
-        'email_verified_at'
-       // 'password',
+        'email_verified_at',
+        'password',
     ];
 
     /**

@@ -4,11 +4,7 @@
 @section('content')
 <div class="card card-primary">
     <div class="card-header">
-        @if($user)
             <h3 class="card-title">Edit Employee</h3>
-        @else
-            <h3 class="card-title">Add Employee</h3>
-        @endif
     </div>
     <!-- /.card-header -->
     @if ($errors->any())
@@ -82,10 +78,6 @@
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
         </div>
         <!-- /.card-body -->
 
@@ -100,21 +92,13 @@
 <script type="text/javascript">
 
     $(document).ready(function (e) {
-
-
         $('#exampleInputFile').change(function(){
-
             let reader = new FileReader();
-
             reader.onload = (e) => {
-
                 $('#preview-image-before-upload').attr('src', e.target.result);
             }
-
             reader.readAsDataURL(this.files[0]);
-
         });
-
     });
 
 </script>

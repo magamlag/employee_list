@@ -17,7 +17,7 @@ class EmployeeController extends Controller
     public function index()
     {
         //
-        $employees = UserBackup::all();
+        $employees = UserBackup::paginate(4);
 //        $position = UserBackup::find(1)->position;
 //        dd($employees, $position);
         return view('admin.employees.index')->with('employees', $employees);
@@ -29,10 +29,11 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function create()
+    public function create(Position $position)
     {
         //
-        return view('admin.employees.form');
+        $positions = $position->all();
+        return view('admin.employees.create', compact('positions',$positions));
     }
 
     /**
@@ -52,8 +53,14 @@ class EmployeeController extends Controller
         }
 
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
+            'photo' => 'image',
+            'name' => 'required|max:255|string',
+            'position_id' => 'required',
+            'date_employment' => 'required',
+            'phone_number' => 'required',
+            'email' => 'required|email',
+            'salary' => 'required',
+            'password' => 'required'
         ]);
 
         UserBackup::create($request->all());
