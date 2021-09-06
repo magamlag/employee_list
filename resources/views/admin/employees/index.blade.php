@@ -33,9 +33,6 @@
                 <a href="{{route('employees.edit',[$employee->id])}}">
                     <i class="fas fa-edit"></i>
                 </a>
-                    <a href="{{route('employees.destroy',[$employee->id])}}">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
                 <button type="submit" title="delete" style="border: none; background-color:transparent;">
                     <i class="fas fa-trash fa-lg text-danger"></i>
                 </button>

@@ -24,3 +24,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 Route::resource('admin/employees', \App\Http\Controllers\EmployeeController::class);
+Route::resource('admin/positions', \App\Http\Controllers\PositionController::class);

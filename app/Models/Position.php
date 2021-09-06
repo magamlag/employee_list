@@ -16,6 +16,10 @@ class Position extends Model
      */
     protected $table = 'positions';
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function user(){
         return $this->belongsTo('UserBackup');
     }
