@@ -54,7 +54,7 @@ class EmployeeController extends Controller
 
         $request->validate([
             'photo' => 'image',
-            'name' => 'required|max:255|string',
+            'name' => 'required|min:2|max:255|string',
             'position_id' => 'required',
             'date_employment' => 'required',
             'phone_number' => 'required',
